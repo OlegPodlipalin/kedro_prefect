@@ -1,0 +1,7 @@
+dataframe:
+  type: pandas.ParquetDataset
+  filepath: data/01_raw/df.pq
+
+multiplied_dataframe:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/multiplied_df.pq
