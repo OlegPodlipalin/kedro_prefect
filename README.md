@@ -23,4 +23,4 @@ The pipeline names that are available to run:
 
 ## Env variables
 To successfully run the pipelines the followihg environmental variables must be specified:
-- `PARENT_DIR_PATH` - must be set to the full path of the project root folder.
+- `PARENT_DIR_PATH` - must be set to the full path of the project root folder. 
