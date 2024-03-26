@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    visibility: public
     permissions:
       contents: read
       packages: write
@@ -22,17 +23,24 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: set lower case owner name
+      run: |
+        echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+      env:
+        OWNER: '${{ github.repository_owner }}'
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/my-prefect:latest  # Change `my-prefect` to your image name.
+        tags: ghcr.io/${{ env.OWNER_LC }}/my-prefect:latest  # Change `my-prefect` to your image name.
 
-    - name: Set image visibility to public
-      run: |
-        echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-        gh package list
-        gh package update --package ghcr.io/${{ github.repository_owner }}/my-prefect --visibility public  # Change `my-prefect` to your image name.
+    # - name: Set image visibility to public
+    #   run: |
+    #     echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+    #     gh package list
+    #     gh package update --package ghcr.io/${{ env.OWNER_LC }}/my-prefect --visibility public  # Change `my-prefect` to your image name.
       env:
+        OWNER_LC: ${{ env.OWNER_LC }}
         GH_CLI_VERSION: 2.0.0
