@@ -75,7 +75,6 @@ def my_flow(pipeline_name: str, env: str):
             node_task()
 
 
-@task()
 def kedro_init(
     pipeline_name: str,
     project_path: Path,
