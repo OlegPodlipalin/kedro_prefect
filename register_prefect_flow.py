@@ -3,13 +3,6 @@ import click
 from pathlib import Path
 from typing import Dict, List, Union, Callable
 
-from kedro.framework.hooks.manager import _create_hook_manager
-from kedro.framework.project import pipelines
-from kedro.framework.session import KedroSession
-from kedro.framework.startup import bootstrap_project
-from kedro.io import DataCatalog, MemoryDataset
-from kedro.pipeline.node import Node
-from kedro.runner import run_node
 
 from prefect import flow, task, get_run_logger
 from prefect.deployments import Deployment
@@ -51,6 +44,7 @@ def prefect_deploy(
 
 @flow(name="my_flow")
 def my_flow(pipeline_name: str, env: str):
+    from kedro.framework.startup import bootstrap_project
     
     logger = get_run_logger()
     project_path = Path.cwd()
@@ -85,6 +79,10 @@ def kedro_init(
     KedroSession
     """
     # bootstrap project within task / flow scope
+    from kedro.framework.project import pipelines
+    from kedro.framework.session import KedroSession
+    from kedro.framework.startup import bootstrap_project
+    from kedro.io import DataCatalog, MemoryDataset
     
     logger = get_run_logger()
     logger.info("Bootstrapping project")
@@ -109,7 +107,7 @@ def kedro_init(
 
 def init_kedro_tasks_by_execution_layer(
     pipeline_name: str,
-    execution_config: Union[None, Dict[str, Union[DataCatalog, str]]] = None,
+    execution_config = None,
 ) -> List[List[Callable]]:
     """
     Inits the Kedro tasks ordered topologically in groups, which implies that an earlier group
@@ -123,6 +121,7 @@ def init_kedro_tasks_by_execution_layer(
     Returns:
         List[List[Callable]]: A list of topologically ordered task groups
     """
+    from kedro.framework.project import pipelines
 
     pipeline = pipelines.get(pipeline_name)
 
@@ -144,8 +143,11 @@ def init_kedro_tasks_by_execution_layer(
 
 
 def kedro_task(
-    node: Node, task_dict: Union[None, Dict[str, Union[DataCatalog, str]]] = None
+    node, task_dict = None
 ):
+    from kedro.framework.hooks.manager import _create_hook_manager
+    from kedro.runner import run_node
+    
     run_node(
         node,
         task_dict["catalog"],
@@ -155,8 +157,8 @@ def kedro_task(
 
 
 def instantiate_task(
-    node: Node,
-    execution_config: Union[None, Dict[str, Union[DataCatalog, str]]] = None,
+    node,
+    execution_config = None,
 ) -> Callable:
     """
     Function that wraps a Node inside a task for future execution
