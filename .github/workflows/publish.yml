@@ -8,7 +8,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    visibility: public
     permissions:
       contents: read
       packages: write
@@ -35,12 +34,11 @@ jobs:
       with:
         push: true
         tags: ghcr.io/${{ env.OWNER_LC }}/my-prefect:latest  # Change `my-prefect` to your image name.
+        visibility: public
 
     # - name: Set image visibility to public
-    #   run: |
-    #     echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-    #     gh package list
-    #     gh package update --package ghcr.io/${{ env.OWNER_LC }}/my-prefect --visibility public  # Change `my-prefect` to your image name.
-      env:
-        OWNER_LC: ${{ env.OWNER_LC }}
-        GH_CLI_VERSION: 2.0.0
+    #   uses: docker/build-push-action@v4
+    #   with:
+    #     name: ghcr.io/${{ env.OWNER_LC }}/my-prefect
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
