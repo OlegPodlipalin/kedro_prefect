@@ -3,7 +3,11 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main  # Adjust this to match the branch you want to trigger this workflow.
+      - main
+    paths:
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'requirements.txt'
 
 jobs:
   build-and-push:
@@ -34,7 +38,6 @@ jobs:
       with:
         push: true
         tags: ghcr.io/${{ env.OWNER_LC }}/my-prefect:latest  # Change `my-prefect` to your image name.
-        visibility: public
 
     # - name: Set image visibility to public
     #   uses: docker/build-push-action@v4
