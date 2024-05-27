@@ -21,7 +21,7 @@ deployments:
   tags: []
   description: null
   schedule: {}
-  flow_name: my_super_flow
+  flow_name: null
   entrypoint: register_prefect_flow.py:my_flow
   parameters: {}
   work_pool:
