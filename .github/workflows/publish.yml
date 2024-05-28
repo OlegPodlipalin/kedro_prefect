@@ -8,6 +8,9 @@ on:
       - 'pyproject.toml'
       - 'poetry.lock'
       - 'requirements.txt'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [custom-event]
 
 jobs:
   build-and-push:
