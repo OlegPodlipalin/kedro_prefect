@@ -30,8 +30,8 @@ jobs:
 
       - name: Prefect Deploy
         env:
-          PREFECT_API_KEY: my-api-key
-          PREFECT_API_URL: http://13.50.233.142:4200/api 
+          PREFECT_API_KEY: MIIEpAIBAAKCAQEApweCZ9iueMNrV1fQCNnbJ8f4DfJVSeelUVKx3kkODDp0aveN
+          PREFECT_API_URL: http://16.171.4.29:80/api 
         run: |
           pip install prefect
           prefect deploy --prefect-file prefect_deploy/prefect.yml -n my-deployment
