@@ -42,12 +42,12 @@ flow.from_source(
     entrypoint="register_prefect_flow.py:my_flow",
 ).deploy(
     name="my_deployment_name",
-    work_pool_name="<my_pool_name>",
+    work_pool_name="hhhh",
     image="ghcr.io/olegpodlipalin/my-prefect:latest",
     job_variables={
     	"auto_remove": True,
     	"volumes": [
-    		"/path/on/host:/opt/prefect/data", # mount shared volume form HOST!
+    		".:/opt/prefect/data", # mount shared volume form HOST!
     	],
     },
     push=False,
@@ -59,3 +59,5 @@ flow.from_source(
 The pipeline names that are available to run (to run via prefect UI):  
 - name: `myltiply_pipeline`
 - env: `base`
+
+dummy update
