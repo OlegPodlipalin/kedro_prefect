@@ -25,7 +25,7 @@ deployments:
   entrypoint: register_prefect_flow.py:my_flow
   parameters: {}
   work_pool:
-    name: docker-poolrerer
+    name: drunk-master
     work_queue_name: null
     job_variables:
       image: ghcr.io/olegpodlipalin/my-prefect:latest
