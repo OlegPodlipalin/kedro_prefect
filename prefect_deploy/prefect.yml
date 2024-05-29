@@ -36,4 +36,23 @@ deployments:
         - "/home/ubuntu/data:/opt/prefect/data"
       networks:
         - "prefect-server_worker-pool"
+        
+- name: hello
+  version: null
+  tags: []
+  description: null
+  schedule: {}
+  flow_name: null
+  entrypoint: register_prefect_flow.py:hello
+  parameters: {}
+  work_pool:
+    name: docker-based
+    work_queue_name: null
+    job_variables:
+      image: ghcr.io/olegpodlipalin/my-prefect:latest
+      auto_remove: true
+      volumes:
+        - "/home/ubuntu/data:/opt/prefect/data"
+      networks:
+        - "prefect-server_worker-pool"
       
