@@ -44,7 +44,8 @@ def prefect_deploy(
 @flow(log_prints=True, name="my_kedro_flow")
 def my_kedro_flow(pipeline_name: str, env: str):
     from kedro.framework.startup import bootstrap_project
-    
+    from time import sleep
+    sleep(120)
     logger = get_run_logger()
     project_path = Path.cwd()
 
