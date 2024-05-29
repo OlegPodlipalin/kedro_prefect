@@ -8,7 +8,9 @@ build: null
 push: null
 
 # pull section allows you to provide instructions for cloning this project in remote locations
-pull: null
+pull: 
+  - prefect.deployments.steps.set_working_directory: 
+      directory: /opt/prefect/kedro_prefect
 # - prefect.deployments.steps.git_clone:
 #     repository: https://github.com/OlegPodlipalin/kedro_prefect.git
 #     branch: main
@@ -29,6 +31,6 @@ deployments:
     work_queue_name: null
     job_variables:
       image: ghcr.io/olegpodlipalin/my-prefect:latest
-      auto_remove: true
+      auto_remove: false
       volumes:
         - "/home/ubuntu/data:/opt/prefect/data"
