@@ -37,4 +37,4 @@ jobs:
           PREFECT_API_URL: http://16.171.4.29:80/api 
         run: |
           pip install prefect
-          prefect deploy --prefect-file prefect_deploy/prefect.yml
+          prefect deploy --prefect-file prefect_deploy/prefect.yml --all
