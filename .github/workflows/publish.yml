@@ -18,9 +18,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    strategy:
-      matrix:
-        python-version: [3.10]
+
 
     steps:
     - name: Check out the repo
@@ -43,11 +41,4 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ env.OWNER_LC }}/my-prefect:latest  # Change `my-prefect` to your image name.
-
-    # - name: Set image visibility to public
-    #   uses: docker/build-push-action@v4
-    #   with:
-    #     name: ghcr.io/${{ env.OWNER_LC }}/my-prefect
-    #     username: ${{ github.actor }}
-    #     password: ${{ secrets.GITHUB_TOKEN }}
+        tags: ghcr.io/${{ env.OWNER_LC }}/my-prefect:latest
