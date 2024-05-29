@@ -16,3 +16,4 @@ def checker(df1: pd.DataFrame, df2: pd.DataFrame, multiplier: np.number) -> pd.D
     df1[df1.select_dtypes(np.number).columns] = df1.select_dtypes(np.number) * multiplier
     assert df1.equals(df2), "Dataframes are not equal"
     logger.info(df2)
+    print(df2)
