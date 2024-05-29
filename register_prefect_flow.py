@@ -42,7 +42,7 @@ def prefect_deploy(
     deployment.apply()
 
 @flow(log_prints=True, name="my_kedro_flow")
-def my_flow(pipeline_name: str, env: str):
+def my_kedro_flow(pipeline_name: str, env: str):
     from kedro.framework.startup import bootstrap_project
     
     logger = get_run_logger()
