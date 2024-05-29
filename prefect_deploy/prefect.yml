@@ -10,7 +10,7 @@ push: null
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull: 
   - prefect.deployments.steps.set_working_directory: 
-      directory: /opt/prefect/kedro_prefect
+      directory: /opt/prefect
 # - prefect.deployments.steps.git_clone:
 #     repository: https://github.com/OlegPodlipalin/kedro_prefect.git
 #     branch: main
