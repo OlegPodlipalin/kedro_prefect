@@ -15,8 +15,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    container:
-      image: prefecthq/prefect:2-python3.10
     permissions:
       contents: read
       packages: write

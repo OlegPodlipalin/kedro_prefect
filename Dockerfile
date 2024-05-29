@@ -13,6 +13,7 @@ FROM prefecthq/prefect:2-python3.10
 ENV PARENT_DIR_PATH /otp/prefect/
 
 COPY requirements.txt ${PARENT_DIR_PATH}requirements.txt
-RUN python -m pip install -r /opt/prefect/requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt --use-deprecated=legacy-resolver
 
 WORKDIR ${PARENT_DIR_PATH}
