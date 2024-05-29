@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'prefect_deploy/prefect.yml'
+      - 'register_prefect_flow.py'
   workflow_dispatch:
   repository_dispatch:
     types: [custom-event]

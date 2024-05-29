@@ -10,7 +10,7 @@
 # WORKDIR /opt/prefect/
 FROM prefecthq/prefect:2-python3.10
 
-ENV PARENT_DIR_PATH /otp/prefect/
+ENV PARENT_DIR_PATH /opt/prefect/
 
 COPY requirements.txt ${PARENT_DIR_PATH}requirements.txt
 
