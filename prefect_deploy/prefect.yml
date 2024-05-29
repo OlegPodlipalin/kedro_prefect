@@ -24,7 +24,7 @@ deployments:
   description: null
   schedule: {}
   flow_name: null
-  entrypoint: register_prefect_flow.py:my_flow
+  entrypoint: register_prefect_flow.py:my_kedro_flow
   parameters: {}
   work_pool:
     name: docker-based
@@ -34,4 +34,6 @@ deployments:
       auto_remove: true
       volumes:
         - "/home/ubuntu/data:/opt/prefect/data"
+      networks:
+        - "prefect-server_worker-pool"
       
