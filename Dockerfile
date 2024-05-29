@@ -10,7 +10,7 @@
 # WORKDIR /opt/prefect/
 FROM prefecthq/prefect:2-python3.10
 
-COPY requirements.txt /opt/prefect/requirements.txt
+COPY . /opt/prefect/
 RUN python -m pip install -r /opt/prefect/requirements.txt
 
 COPY start.sh /opt/prefect/start.sh
@@ -18,4 +18,4 @@ RUN chmod +x /opt/prefect/start.sh
 
 WORKDIR /opt/prefect/
 
-ENTRYPOINT ["/opt/prefect/start.sh"]
+# ENTRYPOINT ["/opt/prefect/start.sh"]
