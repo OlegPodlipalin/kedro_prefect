@@ -8,38 +8,38 @@ from prefect import flow, task, get_run_logger
 from prefect.deployments import Deployment
 
 
-@click.command()
-@click.option("-p", "--pipeline", "pipeline_name", default="__default__")
-@click.option("--env", "-e", type=str, default="base")
-@click.option("--deployment_name", "deployment_name", default="example")
-@click.option("--work_pool_name", "work_pool_name", default="default")
-@click.option("--work_queue_name", "work_queue_name", default="default")
-@click.option("--version", "version", default="1.0")
-def prefect_deploy(
-    pipeline_name, env, deployment_name, work_pool_name, work_queue_name, version
-):
-    """Register a Kedro pipeline as a Prefect flow."""
+# @click.command()
+# @click.option("-p", "--pipeline", "pipeline_name", default="__default__")
+# @click.option("--env", "-e", type=str, default="base")
+# @click.option("--deployment_name", "deployment_name", default="example")
+# @click.option("--work_pool_name", "work_pool_name", default="default")
+# @click.option("--work_queue_name", "work_queue_name", default="default")
+# @click.option("--version", "version", default="1.0")
+# def prefect_deploy(
+#     pipeline_name, env, deployment_name, work_pool_name, work_queue_name, version
+# ):
+#     """Register a Kedro pipeline as a Prefect flow."""
 
-    # Pipeline name to execute
-    pipeline_name = pipeline_name or "__default__"
+#     # Pipeline name to execute
+#     pipeline_name = pipeline_name or "__default__"
 
-    # Use standard deployment configuration for local execution. If you require a different
-    # infrastructure, check the API docs for Deployments at: https://docs.prefect.io/latest/api-ref/prefect/deployments/
-    deployment = Deployment.build_from_flow(
-        flow=my_flow,
-        name=deployment_name,
-        path=str(Path.cwd()),
-        version=version,
-        parameters={
-            "pipeline_name": pipeline_name,
-            "env": env,
-        },
-        infra_overrides={"env": {"PREFECT_LOGGING_LEVEL": "DEBUG"}},
-        work_pool_name=work_pool_name,
-        work_queue_name=work_queue_name,
-    )
+#     # Use standard deployment configuration for local execution. If you require a different
+#     # infrastructure, check the API docs for Deployments at: https://docs.prefect.io/latest/api-ref/prefect/deployments/
+#     deployment = Deployment.build_from_flow(
+#         flow=my_flow,
+#         name=deployment_name,
+#         path=str(Path.cwd()),
+#         version=version,
+#         parameters={
+#             "pipeline_name": pipeline_name,
+#             "env": env,
+#         },
+#         infra_overrides={"env": {"PREFECT_LOGGING_LEVEL": "DEBUG"}},
+#         work_pool_name=work_pool_name,
+#         work_queue_name=work_queue_name,
+#     )
 
-    deployment.apply()
+#     deployment.apply()
 
 @flow(log_prints=True, name="my_kedro_flow")
 def my_kedro_flow(pipeline_name: str, env: str):
@@ -178,5 +178,5 @@ def hello():
     logger.info("Hello - logger")
     print("Hello! - print")
     
-if __name__ == "__main__":
-    prefect_deploy()
+# if __name__ == "__main__":
+#     prefect_deploy()

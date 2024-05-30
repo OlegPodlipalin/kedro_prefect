@@ -27,13 +27,13 @@ deployments:
     entrypoint: register_prefect_flow.py:my_kedro_flow
     parameters: {}
     work_pool:
-      name: docker-based
+      name: ${WORKPOOL_NAME}
       work_queue_name: null
       job_variables:
-        image: ghcr.io/olegpodlipalin/my-prefect:latest
+        image: ghcr.io/olegpodlipalin/kedro_env:latest
         auto_remove: true
         volumes:
-          - "/home/ubuntu/data:/opt/prefect/data"
+          - "${HOST_DIR_PATH}data:${PARENT_DIR_PATH}data"
         networks:
           - "prefect-server_worker-pool"
           
@@ -42,17 +42,17 @@ deployments:
     tags: []
     description: null
     schedule: {}
-    flow_name: null
-    entrypoint: register_prefect_flow.py:hello
+    flow_name: hello_flow
+    entrypoint: register_prefect_flow.py
     parameters: {}
     work_pool:
-      name: docker-based
+      name: ${WORKPOOL_NAME}
       work_queue_name: null
       job_variables:
-        image: ghcr.io/olegpodlipalin/my-prefect:latest
+        image: ghcr.io/olegpodlipalin/kedro_env:latest
         auto_remove: true
         volumes:
-          - "/home/ubuntu/data:/opt/prefect/data"
+          - "${HOST_DIR_PATH}data:${PARENT_DIR_PATH}data"
         networks:
           - "prefect-server_worker-pool"
       
