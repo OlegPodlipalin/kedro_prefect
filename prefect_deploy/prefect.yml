@@ -36,7 +36,7 @@ deployments:
           - "{{ $HOST_DIR_PATH }}data:{{ $PARENT_DIR_PATH }}data"
         networks:
           - "prefect-server_worker-pool"
-        image_pull_policy: always
+        image_pull_policy: Always
           
   - name: hello_world
     version: null
@@ -56,4 +56,4 @@ deployments:
           - "{{ $HOST_DIR_PATH }}data:{{ $PARENT_DIR_PATH }}data"
         networks:
           - "prefect-server_worker-pool"
-        image_pull_policy: always
+        image_pull_policy: Always
