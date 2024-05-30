@@ -32,4 +32,4 @@ jobs:
           WORKPOOL_NAME: ${{ secrets.PREFECT_DOCKER_WORKPOOL }}
         run: |
           pip install prefect
-          prefect deploy --prefect-file prefect_deploy/prefect.yml --all
+          prefect deploy --prefect-file prefect.yml --all
