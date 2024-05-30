@@ -43,8 +43,8 @@ deployments:
     tags: []
     description: null
     schedule: {}
-    flow_name: hello_flow
-    entrypoint: register_prefect_flow.py
+    flow_name: null
+    entrypoint: register_prefect_flow.py:hello
     parameters: {}
     work_pool:
       name: "{{ $WORKPOOL_NAME }}"
