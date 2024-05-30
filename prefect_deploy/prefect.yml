@@ -27,13 +27,13 @@ deployments:
     entrypoint: register_prefect_flow.py:my_kedro_flow
     parameters: {}
     work_pool:
-      name: ${WORKPOOL_NAME}
+      name: "{{ $WORKPOOL_NAME }}"
       work_queue_name: null
       job_variables:
         image: ghcr.io/olegpodlipalin/kedro_env:latest
         auto_remove: true
         volumes:
-          - "${HOST_DIR_PATH}data:${PARENT_DIR_PATH}data"
+          - "{{ $HOST_DIR_PATH }}data:{{ $PARENT_DIR_PATH }}data"
         networks:
           - "prefect-server_worker-pool"
         image_pull_policy: always
@@ -47,14 +47,13 @@ deployments:
     entrypoint: register_prefect_flow.py
     parameters: {}
     work_pool:
-      name: ${WORKPOOL_NAME}
+      name: "{{ $WORKPOOL_NAME }}"
       work_queue_name: null
       job_variables:
         image: ghcr.io/olegpodlipalin/kedro_env:latest
         auto_remove: true
         volumes:
-          - "${HOST_DIR_PATH}data:${PARENT_DIR_PATH}data"
+          - "{{ $HOST_DIR_PATH }}data:{{ $PARENT_DIR_PATH }}data"
         networks:
           - "prefect-server_worker-pool"
         image_pull_policy: always
-        
