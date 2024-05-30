@@ -1,18 +1,16 @@
-name: Deploy Prefect flow
+name: Deploy Prefect Flows to EC2
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'prefect_deploy/prefect.yml'
-      - 'register_prefect_flow.py'
+      - 'prefect.yml'
+      - 'flows.py'
   workflow_dispatch:
-  repository_dispatch:
-    types: [custom-event]
 
 jobs:
-  deploy:
+  deploy-to-ec2:
     name: Deploy
     runs-on: ubuntu-latest
 
