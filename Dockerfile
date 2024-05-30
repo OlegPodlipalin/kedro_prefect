@@ -1,5 +1,6 @@
 FROM prefecthq/prefect:2-python3.10
 
+ARG DIR_PATH
 ENV PARENT_DIR_PATH=${DIR_PATH}
 
 COPY requirements.txt ${PARENT_DIR_PATH}requirements.txt
