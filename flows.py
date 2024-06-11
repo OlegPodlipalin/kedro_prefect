@@ -5,11 +5,16 @@ from prefect import flow, task, get_run_logger
 
 
 @flow(log_prints=True, name="my_kedro_flow")
-def my_kedro_flow(pipeline_name: str, env: str = "base"):
+def my_kedro_flow(pipeline_name: str, env: str = "base", **kwargs):
     from kedro.framework.startup import bootstrap_project
 
     logger = get_run_logger()
     project_path = Path.cwd()
+    logger.info(f"kwargs: {kwargs}")
+    logger.info(f"isinstance(kwargs, dict): {isinstance(kwargs, dict)}")
+    if isinstance(kwargs, dict):
+        logger.info(f"kwargs.get('hi'): {kwargs.get('hi')}")
+    
 
     metadata = bootstrap_project(project_path)
     logger.info("Project name: %s", metadata.project_name)
